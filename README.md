@@ -33,7 +33,11 @@ This script retrieves recent changes from a private MediaWiki instance that requ
    pip install -r requirements.txt
    ```
 
-3. **Create a `.env` File**
+3. **Obtain a BotPassword**
+
+   To use this script, you'll need a BotPassword from your MediaWiki instance. A BotPassword is a secondary password tied to your MediaWiki account, used specifically for automation and scripts. To obtain one, go to Special:BotPasswords on your wiki instance and follow the instructions. This script does not require any additional permissions beyond the basic access.
+   
+5. **Create a `.env` File**
 
    Create a `.env` file in the project root directory with the following content:
 
@@ -47,7 +51,7 @@ This script retrieves recent changes from a private MediaWiki instance that requ
    SENDER_EMAIL=<sender_email_address>
    ```
 
-4. **Run the Script**
+6. **Run the Script**
 
    Execute the script to generate and send the email report:
 
@@ -87,7 +91,7 @@ The script uses the following environment variables:
 | Variable         | Description                                                  |
 |------------------|--------------------------------------------------------------|
 | `MW_USERNAME`    | MediaWiki username                                           |
-| `MW_PASSWORD`    | MediaWiki password                                           |
+| `MW_PASSWORD`    | MediaWiki password  (BotPassword)                            |
 | `MW_DOMAIN`      | MediaWiki domain (e.g., `arbcom-en.wikipedia.org`)           |
 | `RECIPIENT_EMAIL`| Email address to send the report to                          |
 | `MAILGUN_API_KEY`| Mailgun API key for sending emails                           |
