@@ -102,3 +102,95 @@ The script uses the following environment variables:
 
 - The script gracefully handles errors like failed authentication or missing environment variables.
 - If no changes are found in the specified date range, the script exits without sending an email.
+
+
+## Setting Up the Script on Heroku
+
+To run this script periodically on Heroku, you'll need to:
+
+1. **Clone this repo locally**
+
+2. **Create a Heroku Account and App**
+
+   - Sign up for a Heroku account at [heroku.com](https://www.heroku.com/).
+   - Install the Heroku CLI if you haven't already: [Heroku CLI Installation](https://devcenter.heroku.com/articles/heroku-cli#download-and-install).
+   - Create a new Heroku app:
+
+     ```bash
+     heroku create your-app-name
+     ```
+
+3. **Create a Procfile**
+
+   - **`Procfile`:**
+
+     Create a `Procfile` to define the process type:
+
+     ```
+     worker: python get_recent_changes.py
+     ```
+
+     - This tells Heroku to run the script as a worker process.
+
+4. **Deploy to Heroku**
+
+   ```bash
+   heroku git:remote -a your-app-name
+   git push heroku master
+   ```
+
+5. **Provision the Heroku Scheduler Add-on**
+
+   - Add the Heroku Scheduler add-on:
+
+     ```bash
+     heroku addons:create scheduler:standard
+     ```
+
+6. **Configure Environment Variables**
+
+   - Set the required environment variables on Heroku:
+
+     ```bash
+     heroku config:set MW_USERNAME='YourUsername@YourBotName'
+     heroku config:set MW_PASSWORD='YourBotPassword'
+     heroku config:set MAILGUN_API_KEY='your-mailgun-api-key'
+     heroku config:set MAILGUN_DOMAIN='your-mailgun-domain'
+     heroku config:set SENDER_EMAIL='noreply@yourdomain.com'
+     heroku config:set RECIPIENT_EMAIL='recipient@example.com'
+     ```
+
+   - **Note:** Never hardcode sensitive information in your code or commit them to version control. Always use environment variables.
+
+7. **Schedule the Script**
+
+   - Run the Heroku Scheduler:
+
+     ```bash
+     heroku addons:open scheduler
+     ```
+
+   - In the Heroku Scheduler dashboard:
+     - Click "Add Job".
+     - Enter the command to run:
+
+       ```
+       python get_recent_changes.py
+       ```
+
+     - Set the frequency.
+     - Save the job.
+
+8. **Verify the Setup**
+
+   - You can manually run the script to test:
+
+     ```bash
+     heroku run python get_recent_changes.py
+     ```
+
+   - Check the logs to verify that the script is running correctly:
+
+     ```bash
+     heroku logs --tail
+     ```
