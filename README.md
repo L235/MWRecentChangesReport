@@ -21,8 +21,8 @@ This script retrieves recent changes from a private MediaWiki instance that requ
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/L235/rc-report.git
-   cd rc-report
+   git clone https://github.com/L235/MWRecentChangesReport.git
+   cd MWRecentChangesReport
    ```
 
 2. **Install Dependencies**
