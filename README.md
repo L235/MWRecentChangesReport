@@ -56,7 +56,7 @@ This script retrieves recent changes from a private MediaWiki instance that requ
    Execute the script to generate and send the email report:
 
    ```bash
-   python get_recent_changes.py
+   python rc-report.py
    ```
 
 ## How It Works
@@ -127,7 +127,7 @@ To run this script periodically on Heroku, you'll need to:
      Create a `Procfile` to define the process type:
 
      ```
-     worker: python get_recent_changes.py
+     worker: python rc-report.py
      ```
 
      - This tells Heroku to run the script as a worker process.
@@ -175,7 +175,7 @@ To run this script periodically on Heroku, you'll need to:
      - Enter the command to run:
 
        ```
-       python get_recent_changes.py
+       python rc-report.py
        ```
 
      - Set the frequency.
@@ -186,7 +186,7 @@ To run this script periodically on Heroku, you'll need to:
    - You can manually run the script to test:
 
      ```bash
-     heroku run python get_recent_changes.py
+     heroku run python rc-report.py
      ```
 
    - Check the logs to verify that the script is running correctly:
