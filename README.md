@@ -179,11 +179,11 @@ To run this script periodically on Heroku, you'll need to:
        ```
 
      - Set the frequency. The lowest frequency option is daily, so if you want this to run weekly, you can wrap it in a brief bash script, as follows:
-  
-      ```
-      if [ "$(date +%u)" = 0 ]; then python rc-report.py; fi    # runs on Sundays only
-      ```
-      (hat tip to [this StackOverflow answer](https://stackoverflow.com/a/33489591))
+       ```
+       if [ "$(date +%u)" = 0 ]; then python rc-report.py; fi    # runs on Sundays only
+       ```
+       (hat tip to [this StackOverflow answer](https://stackoverflow.com/a/33489591))
+
      - Save the job.
 
 8. **Verify the Setup**
